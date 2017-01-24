@@ -95,6 +95,7 @@ namespace CSharp_Programming_COP2360_228883_2
 
             internal static void Exit()
             {
+                Console.WriteLine();
                 Console.WriteLine("Application will now exit.");
                 Console.WriteLine("Press any key to close...");
                 Console.ReadKey();
@@ -105,7 +106,8 @@ namespace CSharp_Programming_COP2360_228883_2
         {
             internal Circle()
             {
-
+                Console.WriteLine("Circle");
+                Console.ReadKey();
             }
         }
 
@@ -113,7 +115,8 @@ namespace CSharp_Programming_COP2360_228883_2
         {
             internal Rectangle()
             {
-
+                Console.WriteLine("Rectangle");
+                Console.ReadKey();
             }
         }
 
@@ -121,7 +124,8 @@ namespace CSharp_Programming_COP2360_228883_2
         {
             internal Cylinder()
             {
-
+                Console.WriteLine("Cylinder");
+                Console.ReadKey();
             }
         }
 
