@@ -1,12 +1,24 @@
-﻿using System;
+﻿///------------------------------------------------------------------------------
+///   Namespace:      <Class CSharp_Programming_COP2360_228883_2>                              
+///   Class:          <Class Program>                                   
+///   Description:    <Description Homework>                                  
+///   Author:         <Author Matias Miranda Noriega> Date: <DateTime 01/30/2017>   
+///   Notes:          <Notes>                                        
+///   Revision History:                                              
+///   Name:Initial  Date:01/30/2017 Description:Created the script on this day                      
+///------------------------------------------------------------------------------
 
-namespace CSharp_Programming_COP2360_228883_2
+using System;
+
+namespace Homework
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        private static Assignment2Interface hwInterface;
+
+        public static void Main(string[] args)
         {
-            var Assigment2Interface = new Assignment2Interface();
+            hwInterface = new Assignment2Interface();
         }
 
         class Assignment2Interface
@@ -14,7 +26,6 @@ namespace CSharp_Programming_COP2360_228883_2
             public Assignment2Interface()
             {
                 DetermineSelect();
-                Exit();
             }
             internal static void Menu()
             {
@@ -25,12 +36,13 @@ namespace CSharp_Programming_COP2360_228883_2
                 Console.WriteLine("1) Circle");
                 Console.WriteLine("2) Rectangle");
                 Console.WriteLine("3) Cylinder");
+                Console.WriteLine("4) Exit");
             }
 
             internal static void DetermineSelect()
             {
 
-                bool selecDetermined = false;
+                bool selectDetermined = false;
 
                 do
                 {
@@ -41,8 +53,8 @@ namespace CSharp_Programming_COP2360_228883_2
                     {
                         int selectedMenu;
                         Int32.TryParse(selection.KeyChar.ToString(), out selectedMenu);
-                        selecDetermined = true;
-                        Select(selectedMenu); 
+                        selectDetermined = true;
+                        Select(selectedMenu);
                     }
                     else
                     {
@@ -51,46 +63,34 @@ namespace CSharp_Programming_COP2360_228883_2
                         Console.WriteLine("Press any key to continue...");
                         Console.ReadKey();
                         Console.Clear();
-                        Menu();
                     }
                 }
-                while (!selecDetermined);
+                while (!selectDetermined);
             }
 
-            internal static void Select(int menu)
+            internal static void Select(int selection)
             {
-                switch(menu){
+                switch (selection)
+                {
                     case 1:
-                        Circle();
+                        new Circle();
                         break;
                     case 2:
-                        Rectangle();
+                        new Rectangle();
                         break;
                     case 3:
-                        Cylinder();
+                        new Cylinder();
+                        break;
+                    case 4:
+                        Exit();
                         break;
                     default:
-                        Console.WriteLine("Menu option entered {0} is not available...", menu);
+                        Console.WriteLine("Selection option entered {0} is not available...", selection);
                         Console.WriteLine("Press any key to continue...");
                         Console.ReadKey();
                         DetermineSelect();
                         break;
                 }
-            }
-
-            internal static void Circle()
-            {
-                var cir = new Circle();
-            }
-
-            internal static void Rectangle()
-            {
-                var rec = new Rectangle();
-            }
-
-            internal static void Cylinder()
-            {
-                var cyl = new Cylinder();
             }
 
             internal static void Exit()
@@ -106,32 +106,407 @@ namespace CSharp_Programming_COP2360_228883_2
         {
             internal Circle()
             {
-                Console.WriteLine("Circle");
-                Console.ReadKey();
+                DetermineSelect();
             }
-        }
 
-        class Rectangle
-        {
-            internal Rectangle()
+            internal static void Menu()
             {
-                Console.WriteLine("Rectangle");
-                Console.ReadKey();
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.Clear();
+                Console.WriteLine("Available calculations for the circle shape:");
+                Console.WriteLine("1) Area");
+                Console.WriteLine("2) Circumference");
+                Console.WriteLine("3) Radius");
+                Console.WriteLine("4) Main Menu");
+                Console.WriteLine("5) Exit");
             }
-        }
 
-        class Cylinder
-        {
-            internal Cylinder()
+            internal static void DetermineSelect()
             {
-                Console.WriteLine("Cylinder");
+
+                bool selectDetermined = false;
+
+                do
+                {
+                    Menu();
+                    var selection = Console.ReadKey();
+                    Console.WriteLine();
+                    if (Char.IsNumber(selection.KeyChar))
+                    {
+                        int selectedMenu;
+                        Int32.TryParse(selection.KeyChar.ToString(), out selectedMenu);
+                        selectDetermined = true;
+                        Select(selectedMenu);
+                    }
+                    else
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine("Non-numeric input '{0}' entered, please try again.", selection.KeyChar);
+                        Console.WriteLine("Press any key to continue...");
+                        Console.ReadKey();
+                        Console.Clear();
+                    }
+                }
+                while (!selectDetermined);
+            }
+
+            internal static void Select(int selection)
+            {
+                switch (selection)
+                {
+                    case 1:
+                        // Calculate area
+                        try
+                        {
+                            int r;
+                            double A;
+                            Console.WriteLine("Enter the radius:");
+                            r = Convert.ToInt32(Console.ReadLine());
+                            A = (3.14) * r * r;
+                            Console.WriteLine("The Area of circle of given radius is =" + A);
+                            Console.WriteLine("Press any key to continue...");
+                            Console.ReadKey();
+                            DetermineSelect();
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine("Invalid radius entered.");
+                            Console.WriteLine("Press any key to continue...");
+                            Console.ReadKey();
+                            Select(1);
+                        };
+                        break;
+                    case 2:
+                        // Calculate Circumference
+                        try
+                        {
+                            Console.WriteLine("Please write the radius of your circle and hit Enter afterwards: ");
+                            double radius = double.Parse(Console.ReadLine());
+                            double pi = Math.PI;
+                            double area = 2 * pi * radius;
+                            Console.WriteLine("The Perimeter or Circumference (C=2πr) of your circle is: {0:F2}", area);
+                            Console.WriteLine("Press any key to continue...");
+                            Console.ReadKey();
+                            DetermineSelect();
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine("Invalid radius entered.");
+                            Console.WriteLine("Press any key to continue...");
+                            Console.ReadKey();
+                            Select(2);
+                        };
+                        break;
+                    case 3:
+                        // Calculate Radius
+                        try
+                        {
+                            Console.WriteLine("Please write the area of your circle and hit Enter afterwards: ");
+                            double area = double.Parse(Console.ReadLine());
+                            double pi = Math.PI;
+                            double r = Math.Sqrt(area / pi);
+                            Console.WriteLine("Radius is " + r);
+                            Console.WriteLine("Press any key to continue...");
+                            Console.ReadKey();
+                            DetermineSelect();
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine("Invalid area entered.");
+                            Console.WriteLine("Press any key to continue...");
+                            Console.ReadKey();
+                            Select(3);
+                        };
+                        break;
+                    case 4:
+                        Exit();
+                        break;
+                    case 5:
+                        Exit();
+                        break;
+                    default:
+                        Console.WriteLine("Selection entered {0} is not available...", selection);
+                        Console.WriteLine("Press any key to continue...");
+                        Console.ReadKey();
+                        DetermineSelect();
+                        break;
+                }
+            }
+
+            internal static void Exit()
+            {
+                Console.WriteLine();
+                Console.WriteLine("Application will now exit.");
+                Console.WriteLine("Press any key to close...");
                 Console.ReadKey();
             }
         }
 
-        class Common
+        internal class Rectangle
         {
+            internal static void Menu()
+            {
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.Clear();
+                Console.WriteLine("Available calculations for the circle shape:");
+                Console.WriteLine("1) Area");
+                Console.WriteLine("2) Circumference");
+                Console.WriteLine("3) Radius");
+                Console.WriteLine("4) Main Menu");
+                Console.WriteLine("5) Exit");
+            }
 
+            internal static void DetermineSelect()
+            {
+
+                bool selectDetermined = false;
+
+                do
+                {
+                    Menu();
+                    var selection = Console.ReadKey();
+                    Console.WriteLine();
+                    if (Char.IsNumber(selection.KeyChar))
+                    {
+                        int selectedMenu;
+                        Int32.TryParse(selection.KeyChar.ToString(), out selectedMenu);
+                        selectDetermined = true;
+                        Select(selectedMenu);
+                    }
+                    else
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine("Non-numeric input '{0}' entered, please try again.", selection.KeyChar);
+                        Console.WriteLine("Press any key to continue...");
+                        Console.ReadKey();
+                        Console.Clear();
+                    }
+                }
+                while (!selectDetermined);
+            }
+
+            internal static void Select(int selection)
+            {
+                switch (selection)
+                {
+                    case 1:
+                        // Calculate area
+                        try
+                        {
+                            int r;
+                            double A;
+                            Console.WriteLine("Enter the radius:");
+                            r = Convert.ToInt32(Console.ReadLine());
+                            A = (3.14) * r * r;
+                            Console.WriteLine("The Area of circle of given radius is =" + A);
+                            Console.WriteLine("Press any key to continue...");
+                            Console.ReadKey();
+                            DetermineSelect();
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine("Invalid radius entered.");
+                            Console.WriteLine("Press any key to continue...");
+                            Console.ReadKey();
+                            Select(1);
+                        };
+                        break;
+                    case 2:
+                        // Calculate Circumference
+                        try
+                        {
+                            Console.WriteLine("Please write the radius of your circle and hit Enter afterwards: ");
+                            double radius = double.Parse(Console.ReadLine());
+                            double pi = Math.PI;
+                            double area = 2 * pi * radius;
+                            Console.WriteLine("The Perimeter or Circumference (C=2πr) of your circle is: {0:F2}", area);
+                            Console.WriteLine("Press any key to continue...");
+                            Console.ReadKey();
+                            DetermineSelect();
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine("Invalid radius entered.");
+                            Console.WriteLine("Press any key to continue...");
+                            Console.ReadKey();
+                            Select(2);
+                        };
+                        break;
+                    case 3:
+                        // Calculate Radius
+                        try
+                        {
+                            Console.WriteLine("Please write the area of your circle and hit Enter afterwards: ");
+                            double area = double.Parse(Console.ReadLine());
+                            double pi = Math.PI;
+                            double r = Math.Sqrt(area / pi);
+                            Console.WriteLine("Radius is " + r);
+                            Console.WriteLine("Press any key to continue...");
+                            Console.ReadKey();
+                            DetermineSelect();
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine("Invalid area entered.");
+                            Console.WriteLine("Press any key to continue...");
+                            Console.ReadKey();
+                            Select(3);
+                        };
+                        break;
+                    case 4:
+                        Exit();
+                        break;
+                    default:
+                        Console.WriteLine("Selection entered {0} is not available...", selection);
+                        Console.WriteLine("Press any key to continue...");
+                        Console.ReadKey();
+                        DetermineSelect();
+                        break;
+                }
+            }
+
+            internal static void Exit()
+            {
+                Console.WriteLine();
+                Console.WriteLine("Application will now exit.");
+                Console.WriteLine("Press any key to close...");
+                Console.ReadKey();
+            }
+        }
+
+        internal class Cylinder
+        {
+            internal static void Menu()
+            {
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.Clear();
+                Console.WriteLine("Available calculations for the circle shape:");
+                Console.WriteLine("1) Area");
+                Console.WriteLine("2) Circumference");
+                Console.WriteLine("3) Radius");
+                Console.WriteLine("4) Main Menu");
+                Console.WriteLine("5) Exit");
+            }
+
+            internal static void DetermineSelect()
+            {
+
+                bool selectDetermined = false;
+
+                do
+                {
+                    Menu();
+                    var selection = Console.ReadKey();
+                    Console.WriteLine();
+                    if (Char.IsNumber(selection.KeyChar))
+                    {
+                        int selectedMenu;
+                        Int32.TryParse(selection.KeyChar.ToString(), out selectedMenu);
+                        selectDetermined = true;
+                        Select(selectedMenu);
+                    }
+                    else
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine("Non-numeric input '{0}' entered, please try again.", selection.KeyChar);
+                        Console.WriteLine("Press any key to continue...");
+                        Console.ReadKey();
+                        Console.Clear();
+                    }
+                }
+                while (!selectDetermined);
+            }
+
+            internal static void Select(int selection)
+            {
+                switch (selection)
+                {
+                    case 1:
+                        // Calculate area
+                        try
+                        {
+                            int r;
+                            double A;
+                            Console.WriteLine("Enter the radius:");
+                            r = Convert.ToInt32(Console.ReadLine());
+                            A = (3.14) * r * r;
+                            Console.WriteLine("The Area of circle of given radius is =" + A);
+                            Console.WriteLine("Press any key to continue...");
+                            Console.ReadKey();
+                            DetermineSelect();
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine("Invalid radius entered.");
+                            Console.WriteLine("Press any key to continue...");
+                            Console.ReadKey();
+                            Select(1);
+                        };
+                        break;
+                    case 2:
+                        // Calculate Circumference
+                        try
+                        {
+                            Console.WriteLine("Please write the radius of your circle and hit Enter afterwards: ");
+                            double radius = double.Parse(Console.ReadLine());
+                            double pi = Math.PI;
+                            double area = 2 * pi * radius;
+                            Console.WriteLine("The Perimeter or Circumference (C=2πr) of your circle is: {0:F2}", area);
+                            Console.WriteLine("Press any key to continue...");
+                            Console.ReadKey();
+                            DetermineSelect();
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine("Invalid radius entered.");
+                            Console.WriteLine("Press any key to continue...");
+                            Console.ReadKey();
+                            Select(2);
+                        };
+                        break;
+                    case 3:
+                        // Calculate Radius
+                        try
+                        {
+                            Console.WriteLine("Please write the area of your circle and hit Enter afterwards: ");
+                            double area = double.Parse(Console.ReadLine());
+                            double pi = Math.PI;
+                            double r = Math.Sqrt(area / pi);
+                            Console.WriteLine("Radius is " + r);
+                            Console.WriteLine("Press any key to continue...");
+                            Console.ReadKey();
+                            DetermineSelect();
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine("Invalid area entered.");
+                            Console.WriteLine("Press any key to continue...");
+                            Console.ReadKey();
+                            Select(3);
+                        };
+                        break;
+                    case 4:
+                        Exit();
+                        break;
+                    default:
+                        Console.WriteLine("Selection entered {0} is not available...", selection);
+                        Console.WriteLine("Press any key to continue...");
+                        Console.ReadKey();
+                        DetermineSelect();
+                        break;
+                }
+            }
+
+            internal static void Exit()
+            {
+                Console.WriteLine();
+                Console.WriteLine("Application will now exit.");
+                Console.WriteLine("Press any key to close...");
+                Console.ReadKey();
+            }
         }
     }
 }
