@@ -14,11 +14,9 @@ namespace Homework
 {
     public class Program
     {
-        private static Assignment2Interface hwInterface;
-
         public static void Main(string[] args)
         {
-            hwInterface = new Assignment2Interface();
+            new Assignment2Interface();
         }
 
         class Assignment2Interface
