@@ -27,6 +27,7 @@ namespace Homework
             {
                 DetermineSelect();
             }
+
             internal static void Menu()
             {
                 Console.ForegroundColor = ConsoleColor.Black;
@@ -118,8 +119,7 @@ namespace Homework
                 Console.WriteLine("1) Area");
                 Console.WriteLine("2) Circumference");
                 Console.WriteLine("3) Radius");
-                Console.WriteLine("4) Main Menu");
-                Console.WriteLine("5) Exit");
+                Console.WriteLine("4) Exit");
             }
 
             internal static void DetermineSelect()
@@ -222,9 +222,6 @@ namespace Homework
                     case 4:
                         Exit();
                         break;
-                    case 5:
-                        Exit();
-                        break;
                     default:
                         Console.WriteLine("Selection entered {0} is not available...", selection);
                         Console.WriteLine("Press any key to continue...");
@@ -245,17 +242,20 @@ namespace Homework
 
         internal class Rectangle
         {
+            internal Rectangle()
+            {
+                DetermineSelect();
+            }
             internal static void Menu()
             {
                 Console.ForegroundColor = ConsoleColor.Black;
                 Console.BackgroundColor = ConsoleColor.White;
                 Console.Clear();
-                Console.WriteLine("Available calculations for the circle shape:");
+                Console.WriteLine("Available calculations for the rectangle shape:");
                 Console.WriteLine("1) Area");
-                Console.WriteLine("2) Circumference");
-                Console.WriteLine("3) Radius");
-                Console.WriteLine("4) Main Menu");
-                Console.WriteLine("5) Exit");
+                Console.WriteLine("2) Perimeter");
+                Console.WriteLine("3) Diagonal*");
+                Console.WriteLine("4) Exit");
             }
 
             internal static void DetermineSelect()
@@ -295,54 +295,55 @@ namespace Homework
                         // Calculate area
                         try
                         {
-                            int r;
-                            double A;
-                            Console.WriteLine("Enter the radius:");
-                            r = Convert.ToInt32(Console.ReadLine());
-                            A = (3.14) * r * r;
-                            Console.WriteLine("The Area of circle of given radius is =" + A);
+                            //Rectangle Area: A (area) = L (length) x W (width)
+                            Console.Write("Please write the length of your rectangle: ");
+                            decimal lengthSide = decimal.Parse(Console.ReadLine());
+                            Console.Write("Please write the width of your rectangle: ");
+                            decimal widthSide = decimal.Parse(Console.ReadLine());
+                            decimal area = lengthSide * widthSide;
+                            Console.WriteLine("The area of your rectangle is: {0}", area);
                             Console.WriteLine("Press any key to continue...");
                             Console.ReadKey();
                             DetermineSelect();
                         }
                         catch (Exception)
                         {
-                            Console.WriteLine("Invalid radius entered.");
+                            Console.WriteLine("Invalid data entered.");
                             Console.WriteLine("Press any key to continue...");
                             Console.ReadKey();
                             Select(1);
                         };
                         break;
                     case 2:
-                        // Calculate Circumference
+                        // Calculate Perimeter
                         try
                         {
-                            Console.WriteLine("Please write the radius of your circle and hit Enter afterwards: ");
-                            double radius = double.Parse(Console.ReadLine());
-                            double pi = Math.PI;
-                            double area = 2 * pi * radius;
-                            Console.WriteLine("The Perimeter or Circumference (C=2πr) of your circle is: {0:F2}", area);
+                            Console.WriteLine("Please write the WIDTH of your rectangle:");
+                            double width = double.Parse(Console.ReadLine());
+
+                            Console.WriteLine("Please write the HEIGHT of your rectangle:");
+                            double height = double.Parse(Console.ReadLine());
+
+                            double area = width * height;
+                            double perimeter = 2 * (width + height);
+                            Console.WriteLine("The PERIMETER of your rectangle is: {0}", perimeter);
                             Console.WriteLine("Press any key to continue...");
                             Console.ReadKey();
                             DetermineSelect();
                         }
                         catch (Exception)
                         {
-                            Console.WriteLine("Invalid radius entered.");
+                            Console.WriteLine("Invalid data entered.");
                             Console.WriteLine("Press any key to continue...");
                             Console.ReadKey();
                             Select(2);
                         };
                         break;
                     case 3:
-                        // Calculate Radius
+                        // Calculate angle
                         try
                         {
-                            Console.WriteLine("Please write the area of your circle and hit Enter afterwards: ");
-                            double area = double.Parse(Console.ReadLine());
-                            double pi = Math.PI;
-                            double r = Math.Sqrt(area / pi);
-                            Console.WriteLine("Radius is " + r);
+                            Console.WriteLine("This is broken lol");
                             Console.WriteLine("Press any key to continue...");
                             Console.ReadKey();
                             DetermineSelect();
@@ -383,12 +384,11 @@ namespace Homework
                 Console.ForegroundColor = ConsoleColor.Black;
                 Console.BackgroundColor = ConsoleColor.White;
                 Console.Clear();
-                Console.WriteLine("Available calculations for the circle shape:");
+                Console.WriteLine("Available calculations for the cylinder shape:");
                 Console.WriteLine("1) Area");
-                Console.WriteLine("2) Circumference");
-                Console.WriteLine("3) Radius");
-                Console.WriteLine("4) Main Menu");
-                Console.WriteLine("5) Exit");
+                Console.WriteLine("2) ---");
+                Console.WriteLine("3) ---");
+                Console.WriteLine("4) Exit");
             }
 
             internal static void DetermineSelect()
@@ -425,15 +425,10 @@ namespace Homework
                 switch (selection)
                 {
                     case 1:
-                        // Calculate area
+                        // Calculate area*
                         try
                         {
-                            int r;
-                            double A;
-                            Console.WriteLine("Enter the radius:");
-                            r = Convert.ToInt32(Console.ReadLine());
-                            A = (3.14) * r * r;
-                            Console.WriteLine("The Area of circle of given radius is =" + A);
+                            Console.WriteLine("This is broken lol");
                             Console.WriteLine("Press any key to continue...");
                             Console.ReadKey();
                             DetermineSelect();
@@ -447,14 +442,10 @@ namespace Homework
                         };
                         break;
                     case 2:
-                        // Calculate Circumference
+                        // Calculate ---
                         try
                         {
-                            Console.WriteLine("Please write the radius of your circle and hit Enter afterwards: ");
-                            double radius = double.Parse(Console.ReadLine());
-                            double pi = Math.PI;
-                            double area = 2 * pi * radius;
-                            Console.WriteLine("The Perimeter or Circumference (C=2πr) of your circle is: {0:F2}", area);
+                            Console.WriteLine("This is broken lol");
                             Console.WriteLine("Press any key to continue...");
                             Console.ReadKey();
                             DetermineSelect();
@@ -468,14 +459,10 @@ namespace Homework
                         };
                         break;
                     case 3:
-                        // Calculate Radius
+                        // Calculate ---
                         try
                         {
-                            Console.WriteLine("Please write the area of your circle and hit Enter afterwards: ");
-                            double area = double.Parse(Console.ReadLine());
-                            double pi = Math.PI;
-                            double r = Math.Sqrt(area / pi);
-                            Console.WriteLine("Radius is " + r);
+                            Console.WriteLine("This is broken lol");
                             Console.WriteLine("Press any key to continue...");
                             Console.ReadKey();
                             DetermineSelect();
