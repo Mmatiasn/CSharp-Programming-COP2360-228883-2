@@ -26,12 +26,13 @@ namespace CSharp_Programming_COP2360_228883_2.Classes
             WriteLine("You will be asked to select the figure and enter it;s dimensions.\n\n");
             WriteLine("Press any key when you are ready to begin");
             ReadKey();
-            ShapeMenu();
+            ShapeMenu(textColor);
         }
 
         #region ShapeMenu & ShapeMenuDecision
-        public static void ShapeMenu()
+        public static void ShapeMenu(ConsoleColor textColor = ConsoleColor.Green)
         {
+            ForegroundColor = textColor;
             Clear();
             WriteLine(" _____________________ ");
             WriteLine("|  _________________  |");
@@ -52,6 +53,7 @@ namespace CSharp_Programming_COP2360_228883_2.Classes
             WriteLine("\tCIRCLE.......enter \"C\"");
             WriteLine("\tRECTANGLE....enter \"R\"");
             WriteLine("\tCYLINDER.....enter \"Y\"");
+            WriteLine("\tMYSTERY......enter \"M\"");
             WriteLine("\tEXIT.........enter \"E\"");
             Write("Enter your choice here: ");
             var userKeyInfo = ReadKey();
@@ -74,6 +76,10 @@ namespace CSharp_Programming_COP2360_228883_2.Classes
                     break;
                 case ConsoleKey.E:
                     ExitApplication();
+                    break;
+                case ConsoleKey.M:
+                    Matrix.Run();
+                    ShapeMenu();
                     break;
                 default:
                     WriteLine("\nInvalid selection entered: {0}", userKeyInfo.KeyChar.ToString());
@@ -134,7 +140,7 @@ namespace CSharp_Programming_COP2360_228883_2.Classes
             WriteLine("............................................................");
             WriteLine();
             WriteLine("\tCALCULATE THE SURFACE AREA OF A CYLINDER...enter \"A\"");
-            WriteLine("\tCALCULATE THE VOLUME OF A CYLINDER.........enter \"C\"");
+            WriteLine("\tCALCULATE THE HEIGHT OF A CYLINDER.........enter \"H\"");
             WriteLine("\tCALCULATE THE RADIUS OF A CIRCLE...........enter \"R\"");
             WriteLine("\tNAVIGATE BACK TO SHAPE MENU................enter \"M\"");
             WriteLine("\tEXIT.......................................enter \"E\"");
@@ -142,7 +148,171 @@ namespace CSharp_Programming_COP2360_228883_2.Classes
             Write("Enter your choice here: ");
             var userKeyInfo = ReadKey();
             WriteLine();
-            //CylinderMenuDecision(userKeyInfo);
+            CylinderMenuDecision(userKeyInfo);
+        }
+        #endregion
+
+        #region CylinderMenuDecision
+        public static void CylinderMenuDecision(ConsoleKeyInfo userKeyInfo)
+        {
+            switch (userKeyInfo.Key)
+            {
+                case ConsoleKey.A:
+                    CylinderSurfaceAreaDecision();
+                    break;
+                case ConsoleKey.H:
+                    CylinderHeightDecision();
+                    break;
+                case ConsoleKey.R:
+                    CylinderRadiusDecision();
+                    break;
+                case ConsoleKey.M:
+                    ShapeMenu();
+                    break;
+                case ConsoleKey.E:
+                    ExitApplication();
+                    break;
+                default:
+                    WriteLine("\nInvalid selection entered: {0}", userKeyInfo.KeyChar.ToString());
+                    AnyKeyContinue();
+                    CylinderMenu();
+                    break;
+            }
+        }
+
+        public static void CylinderSurfaceAreaDecision()
+        {
+            double radius;
+
+            Clear();
+            WriteLine("............................................................");
+            WriteLine("Calculate The Surface Area Of A Cylinder | A=2πrh+2πr²");
+            WriteLine("............................................................");
+            WriteLine();
+            Write("ENTER THE RADIUS OF THE CYLINDER: ");
+
+            if (double.TryParse(ReadLine(), out radius))
+            {
+                CylinderSurfaceAreaDecision(radius);
+            }
+            else
+            {
+                CylinderSurfaceAreaDecision();
+            }
+        }
+
+        public static void CylinderSurfaceAreaDecision(double radius)
+        {
+            double height;
+
+            Clear();
+            WriteLine("............................................................");
+            WriteLine("Calculate The Surface Area Of A Cylinder | A=2πrh+2πr²");
+            WriteLine("............................................................");
+            WriteLine();
+            WriteLine("ENTER THE RADIUS OF THE CYLINDER: " + radius);
+            Write("ENTER THE HEIGHT OF THE CYLINDER: ");
+
+            if (double.TryParse(ReadLine(), out height))
+            {
+                Console.WriteLine("\nTHE SURFACE AREA OF THIS CYLINDER OF GIVEN RADIUS " + radius + " AND HEIGHT " + height + " IS " + Cylinder.SurfaceArea(radius, height) + "\n");
+                AnyKeyContinue();
+                CylinderMenu();
+            }
+            else
+            {
+                CylinderSurfaceAreaDecision(radius);
+            }
+        }
+
+        public static void CylinderHeightDecision()
+        {
+            double radius;
+
+            Clear();
+            WriteLine("............................................................");
+            WriteLine("Calculate The Height Of A Cylinder | V/(πr²)");
+            WriteLine("............................................................");
+            WriteLine();
+            Write("ENTER THE RADIUS OF THE CYLINDER: ");
+
+            if (double.TryParse(ReadLine(), out radius))
+            {
+                CylinderHeightDecision(radius);
+            }
+            else
+            {
+                CylinderHeightDecision();
+            }
+        }
+
+        public static void CylinderHeightDecision(double radius)
+        {
+            double volume;
+
+            Clear();
+            WriteLine("............................................................");
+            WriteLine("Calculate The Height Of A Cylinder | V/(πr²)");
+            WriteLine("............................................................");
+            WriteLine();
+            WriteLine("ENTER THE RADIUS OF THE CYLINDER: " + radius);
+            Write("ENTER THE VOLUME OF THE CYLINDER: ");
+
+            if (double.TryParse(ReadLine(), out volume))
+            {
+                Console.WriteLine("\nTHE HEIGHT OF THIS CYLINDER OF GIVEN RADIUS " + radius + " AND VOLUME OF " + volume + " IS " + Cylinder.Height(radius, volume) + "\n");
+                AnyKeyContinue();
+                CylinderMenu();
+            }
+            else
+            {
+                CylinderHeightDecision(volume);
+            }
+        }
+
+        public static void CylinderRadiusDecision()
+        {
+            double height;
+
+            Clear();
+            WriteLine("............................................................");
+            WriteLine("Calculate The Radius Of A Cylinder | √V/(πh)");
+            WriteLine("............................................................");
+            WriteLine();
+            Write("ENTER THE HEIGHT OF THE CYLINDER: ");
+
+            if (double.TryParse(ReadLine(), out height))
+            {
+                CylinderRadiusDecision(height);
+            }
+            else
+            {
+                CylinderRadiusDecision();
+            }
+        }
+
+        public static void CylinderRadiusDecision(double height)
+        {
+            double volume;
+
+            Clear();
+            WriteLine("............................................................");
+            WriteLine("Calculate The Radius Of A Cylinder | √V/(πh)");
+            WriteLine("............................................................");
+            WriteLine();
+            WriteLine("ENTER THE HEIGHT OF THE CYLINDER: " + height);
+            Write("ENTER THE VOLUME OF THE CYLINDER: ");
+
+            if (double.TryParse(ReadLine(), out volume))
+            {
+                Console.WriteLine("\nTHE RADIUS OF THIS CYLINDER OF GIVEN HEIGHT " + height + " AND VOLUME OF " + volume + " IS " + Cylinder.Radius(height, volume) + "\n");
+                AnyKeyContinue();
+                CylinderMenu();
+            }
+            else
+            {
+                CylinderRadiusDecision(height);
+            }
         }
         #endregion
 
@@ -157,7 +327,7 @@ namespace CSharp_Programming_COP2360_228883_2.Classes
                 case ConsoleKey.P:
                     RectanglePerimiterDecision();
                     break;
-                case ConsoleKey.R:
+                case ConsoleKey.D:
                     RectangleDiagonalsDecision();
                     break;
                 case ConsoleKey.M:
@@ -270,18 +440,18 @@ namespace CSharp_Programming_COP2360_228883_2.Classes
 
             Clear();
             WriteLine("............................................................");
-            WriteLine("Calculate The Diagonal Of A Rectangle | √w2+l2");
+            WriteLine("Calculate The Diagonal Of A Rectangle | √(w²+l²)");
             WriteLine("............................................................");
             WriteLine();
             Write("ENTER THE WIDTH OF THE RECTANGLE: ");
 
             if (double.TryParse(ReadLine(), out width))
             {
-                RectangleAreaDecision(width);
+                RectangleDiagonalsDecision(width);
             }
             else
             {
-                RectangleAreaDecision();
+                RectangleDiagonalsDecision();
             }
         }
 
@@ -291,7 +461,7 @@ namespace CSharp_Programming_COP2360_228883_2.Classes
 
             Clear();
             WriteLine("............................................................");
-            WriteLine("Calculate The Diagonal Of A Rectangle | √w2+l2");
+            WriteLine("Calculate The Diagonal Of A Rectangle | √(w²+l²)");
             WriteLine("............................................................");
             WriteLine();
             WriteLine("ENTER THE WIDTH OF THE RECTANGLE: " + width);
@@ -305,7 +475,7 @@ namespace CSharp_Programming_COP2360_228883_2.Classes
             }
             else
             {
-                RectangleAreaDecision();
+                RectangleDiagonalsDecision(width);
             }
         }
         #endregion
@@ -344,7 +514,7 @@ namespace CSharp_Programming_COP2360_228883_2.Classes
 
             Clear();
             WriteLine("............................................................");
-            WriteLine("Calculate The Area Of A Circle | A=πr2");
+            WriteLine("Calculate The Area Of A Circle | A=πr²");
             WriteLine("............................................................");
             WriteLine();
             Write("ENTER THE RADIUS OF THE CIRCLE: ");
@@ -393,7 +563,7 @@ namespace CSharp_Programming_COP2360_228883_2.Classes
             WriteLine("Calculate The Radius Of A Circle | r=C/2π");
             WriteLine("............................................................");
             WriteLine();
-            Write("ENTER THE RADIUS OF THE CIRCLE: ");
+            Write("ENTER THE CIRCUMFERENCE OF THE CIRCLE: ");
 
             if (double.TryParse(ReadLine(), out circumference))
             {

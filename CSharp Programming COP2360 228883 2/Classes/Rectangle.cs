@@ -20,8 +20,7 @@ namespace CSharp_Programming_COP2360_228883_2.Classes
 
         public static double Diagonal(double height, double length)
         {
-            return Math.Pow(height, 2) + Math.Pow(length, 2);
-            // Homework
+            return Math.Sqrt(Math.Pow(height, 2) + Math.Pow(length, 2));
         }
     }
 }
