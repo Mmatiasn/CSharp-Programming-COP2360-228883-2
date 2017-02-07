@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
-using System.Timers;
 using static System.Console;
 
 namespace CSharp_Programming_COP2360_228883_2.Classes
@@ -402,11 +400,11 @@ namespace CSharp_Programming_COP2360_228883_2.Classes
 
             if (double.TryParse(ReadLine(), out width))
             {
-                RectangleAreaDecision(width);
+                RectanglePerimiterDecision(width);
             }
             else
             {
-                RectangleAreaDecision();
+                RectanglePerimiterDecision();
             }
         }
 
@@ -430,7 +428,7 @@ namespace CSharp_Programming_COP2360_228883_2.Classes
             }
             else
             {
-                RectangleAreaDecision(width);
+                RectanglePerimiterDecision(width);
             }
         }
 

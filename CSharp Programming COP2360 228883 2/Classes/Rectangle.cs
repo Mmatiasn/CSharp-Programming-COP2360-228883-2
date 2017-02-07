@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharp_Programming_COP2360_228883_2.Classes
 {
@@ -15,7 +11,7 @@ namespace CSharp_Programming_COP2360_228883_2.Classes
 
         public static double Perimeter(double height, double length)
         {
-            return 2 * (height * length);
+            return 2 * (height + length);
         }
 
         public static double Diagonal(double height, double length)
