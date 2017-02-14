@@ -1,4 +1,4 @@
-﻿ #pragma warning disable 1587
+﻿#pragma warning disable 1587
 ///------------------------------------------------------------------------------
 ///   Namespace:      <Class CSharp_Programming_COP2360_228883_2>                              
 ///   Class:          <Class Program>                                   
@@ -10,6 +10,7 @@
 ///------------------------------------------------------------------------------
 #pragma warning restore 1587
 using System;
+using System.Runtime.InteropServices;
 using static System.Console;
 
 namespace CSharp_Programming_COP2360_228883_2
@@ -643,4 +644,68 @@ namespace CSharp_Programming_COP2360_228883_2
         }
         #endregion
     }
+
+    #region ConsoleHelper should be ignored as it's used to increase the font size of the cmd application.
+    [StructLayout(LayoutKind.Sequential, Pack = 1)]
+    public struct ConsoleFont
+    {
+        public uint Index;
+        public short SizeX, SizeY;
+    }
+
+    public static class ConsoleHelper
+    {
+        [DllImport("kernel32")]
+        public static extern bool SetConsoleIcon(IntPtr hIcon);
+
+        // This didn't work for some weird reason....
+        //public static bool SetConsoleIcon(Icon icon)
+        //{
+        //    return SetConsoleIcon(icon.Handle);
+        //}
+
+        [DllImport("kernel32")]
+        private static extern bool SetConsoleFont(IntPtr hOutput, uint index);
+
+        private enum StdHandle
+        {
+            OutputHandle = -11
+        }
+
+        [DllImport("kernel32")]
+        private static extern IntPtr GetStdHandle(StdHandle index);
+
+        public static bool SetConsoleFont(uint index)
+        {
+            return SetConsoleFont(GetStdHandle(StdHandle.OutputHandle), index);
+        }
+
+        [DllImport("kernel32")]
+        private static extern bool GetConsoleFontInfo(IntPtr hOutput, [MarshalAs(UnmanagedType.Bool)]bool bMaximize,
+            uint count, [MarshalAs(UnmanagedType.LPArray), Out] ConsoleFont[] fonts);
+
+        [DllImport("kernel32")]
+        private static extern uint GetNumberOfConsoleFonts();
+
+        public static uint ConsoleFontsCount
+        {
+            get
+            {
+                return GetNumberOfConsoleFonts();
+            }
+        }
+
+        public static ConsoleFont[] ConsoleFonts
+        {
+            get
+            {
+                ConsoleFont[] fonts = new ConsoleFont[GetNumberOfConsoleFonts()];
+                if (fonts.Length > 0)
+                    GetConsoleFontInfo(GetStdHandle(StdHandle.OutputHandle), false, (uint)fonts.Length, fonts);
+                return fonts;
+            }
+        }
+
+    }
+    #endregion
 }
