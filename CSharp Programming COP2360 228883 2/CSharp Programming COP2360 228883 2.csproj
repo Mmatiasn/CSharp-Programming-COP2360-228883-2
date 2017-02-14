@@ -43,14 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Circle.cs" />
-    <Compile Include="Classes\Cylinder.cs" />
-    <Compile Include="Classes\FigureaApp.cs" />
-    <Compile Include="Classes\Matrix.cs" />
+    <Compile Include="Circle.cs" />
+    <Compile Include="Cylinder.cs" />
     <Compile Include="ConsoleHelper.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="FigureApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Classes\Rectangle.cs" />
+    <Compile Include="Rectangle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

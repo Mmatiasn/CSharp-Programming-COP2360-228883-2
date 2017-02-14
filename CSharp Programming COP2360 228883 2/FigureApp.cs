@@ -1,13 +1,29 @@
-﻿using System;
+﻿ #pragma warning disable 1587
+///------------------------------------------------------------------------------
+///   Namespace:      <Class CSharp_Programming_COP2360_228883_2>                              
+///   Class:          <Class Program>                                   
+///   Description:    <Description Homework>                                  
+///   Author:         <Author Matias Miranda Noriega> Date: <DateTime 02/06/2017>   
+///   Notes:          <Notes>                                        
+///   Revision History:                                              
+///   Name:Initial  Date:02/03/2017 Description:Created the script on this day                      
+///------------------------------------------------------------------------------
+#pragma warning restore 1587
+using System;
 using static System.Console;
 
-namespace CSharp_Programming_COP2360_228883_2.Classes
+namespace CSharp_Programming_COP2360_228883_2
 {
-    public static class FigureaApp
+    public class FigureApp
     {
+        public static void Main(string[] args)
+        {
+            RunInterface();
+        }
+
         public static void RunInterface(ConsoleColor textColor = ConsoleColor.Green, ConsoleColor backgroundColor = ConsoleColor.Black, uint fontSize = 11)
         {
-            Title = typeof(FigureaApp).Namespace;
+            Title = typeof(FigureApp).Namespace;
             ForegroundColor = textColor;
             BackgroundColor = backgroundColor;
             ConsoleHelper.SetConsoleFont(fontSize);
@@ -51,7 +67,6 @@ namespace CSharp_Programming_COP2360_228883_2.Classes
             WriteLine("\tCIRCLE.......enter \"C\"");
             WriteLine("\tRECTANGLE....enter \"R\"");
             WriteLine("\tCYLINDER.....enter \"Y\"");
-            WriteLine("\tMYSTERY......enter \"M\"");
             WriteLine("\tEXIT.........enter \"E\"");
             Write("Enter your choice here: ");
             var userKeyInfo = ReadKey();
@@ -74,10 +89,6 @@ namespace CSharp_Programming_COP2360_228883_2.Classes
                     break;
                 case ConsoleKey.E:
                     ExitApplication();
-                    break;
-                case ConsoleKey.M:
-                    Matrix.Run();
-                    ShapeMenu();
                     break;
                 default:
                     WriteLine("\nInvalid selection entered: {0}", userKeyInfo.KeyChar.ToString());
@@ -213,7 +224,8 @@ namespace CSharp_Programming_COP2360_228883_2.Classes
 
             if (double.TryParse(ReadLine(), out height))
             {
-                Console.WriteLine("\nTHE SURFACE AREA OF THIS CYLINDER OF GIVEN RADIUS " + radius + " AND HEIGHT " + height + " IS " + Cylinder.SurfaceArea(radius, height) + "\n");
+                var cylinder = new Cylinder();
+                Console.WriteLine("\nTHE SURFACE AREA OF THIS CYLINDER OF GIVEN RADIUS " + radius + " AND HEIGHT " + height + " IS " + cylinder.SurfaceArea(radius, height) + "\n");
                 AnyKeyContinue();
                 CylinderMenu();
             }
@@ -258,7 +270,8 @@ namespace CSharp_Programming_COP2360_228883_2.Classes
 
             if (double.TryParse(ReadLine(), out volume))
             {
-                Console.WriteLine("\nTHE HEIGHT OF THIS CYLINDER OF GIVEN RADIUS " + radius + " AND VOLUME OF " + volume + " IS " + Cylinder.Height(radius, volume) + "\n");
+                var cylinder = new Cylinder();
+                Console.WriteLine("\nTHE HEIGHT OF THIS CYLINDER OF GIVEN RADIUS " + radius + " AND VOLUME OF " + volume + " IS " + cylinder.Height(radius, volume) + "\n");
                 AnyKeyContinue();
                 CylinderMenu();
             }
@@ -303,7 +316,8 @@ namespace CSharp_Programming_COP2360_228883_2.Classes
 
             if (double.TryParse(ReadLine(), out volume))
             {
-                Console.WriteLine("\nTHE RADIUS OF THIS CYLINDER OF GIVEN HEIGHT " + height + " AND VOLUME OF " + volume + " IS " + Cylinder.Radius(height, volume) + "\n");
+                var cylinder = new Cylinder();
+                Console.WriteLine("\nTHE RADIUS OF THIS CYLINDER OF GIVEN HEIGHT " + height + " AND VOLUME OF " + volume + " IS " + cylinder.Radius(height, volume) + "\n");
                 AnyKeyContinue();
                 CylinderMenu();
             }
@@ -377,7 +391,8 @@ namespace CSharp_Programming_COP2360_228883_2.Classes
 
             if (double.TryParse(ReadLine(), out length))
             {
-                Console.WriteLine("\nTHE AREA OF THIS RECTANGLE OF GIVEN WIDTH " + width + " AND LENGTH " + length + " IS " + Rectangle.Area(width, length) + "\n");
+                var rectangle = new Rectangle();
+                Console.WriteLine("\nTHE AREA OF THIS RECTANGLE OF GIVEN WIDTH " + width + " AND LENGTH " + length + " IS " + rectangle.Area(width, length) + "\n");
                 AnyKeyContinue();
                 RectangleMenu();
             }
@@ -422,7 +437,8 @@ namespace CSharp_Programming_COP2360_228883_2.Classes
 
             if (double.TryParse(ReadLine(), out length))
             {
-                Console.WriteLine("\nTHE PERIMETER OF THIS RECTANGLE OF GIVEN WIDTH " + width + " AND LENGTH " + length + " IS " + Rectangle.Perimeter(width, length) + "\n");
+                var rectangle = new Rectangle();
+                Console.WriteLine("\nTHE PERIMETER OF THIS RECTANGLE OF GIVEN WIDTH " + width + " AND LENGTH " + length + " IS " + rectangle.Perimeter(width, length) + "\n");
                 AnyKeyContinue();
                 RectangleMenu();
             }
@@ -467,7 +483,8 @@ namespace CSharp_Programming_COP2360_228883_2.Classes
 
             if (double.TryParse(ReadLine(), out length))
             {
-                Console.WriteLine("\nTHE DIAGONAL OF THIS RECTANGLE OF GIVEN WIDTH " + width + " AND LENGTH " + length + " IS " + Rectangle.Diagonal(width, length) + "\n");
+                var rectangle = new Rectangle();
+                Console.WriteLine("\nTHE DIAGONAL OF THIS RECTANGLE OF GIVEN WIDTH " + width + " AND LENGTH " + length + " IS " + rectangle.Diagonal(width, length) + "\n");
                 AnyKeyContinue();
                 RectangleMenu();
             }
@@ -519,7 +536,8 @@ namespace CSharp_Programming_COP2360_228883_2.Classes
 
             if (double.TryParse(ReadLine(), out radius))
             {
-                Console.WriteLine("\nTHE AREA OF THIS CIRCLE OF GIVEN RADIUS " + radius + " IS " + Circle.Area(radius) + "\n");
+                var circle = new Circle();
+                Console.WriteLine("\nTHE AREA OF THIS CIRCLE OF GIVEN RADIUS " + radius + " IS " + circle.Area(radius) + "\n");
                 AnyKeyContinue();
                 CircleMenu();
             }
@@ -542,7 +560,8 @@ namespace CSharp_Programming_COP2360_228883_2.Classes
 
             if (double.TryParse(ReadLine(), out radius))
             {
-                Console.WriteLine("\nTHE CIRCUMFERENCE OF THIS CIRCLE OF GIVEN RADIUS " + radius + " IS " + Circle.Circumference(radius) + "\n");
+                var circle = new Circle();
+                Console.WriteLine("\nTHE CIRCUMFERENCE OF THIS CIRCLE OF GIVEN RADIUS " + radius + " IS " + circle.Circumference(radius) + "\n");
                 AnyKeyContinue();
                 CircleMenu();
             }
@@ -565,7 +584,8 @@ namespace CSharp_Programming_COP2360_228883_2.Classes
 
             if (double.TryParse(ReadLine(), out circumference))
             {
-                Console.WriteLine("\nTHE RADIUS OF THIS CIRCLE OF GIVEN CIRCUMFERENCE " + circumference + " IS " + Circle.Radius(circumference) + "\n");
+                var circle = new Circle();
+                WriteLine("\nTHE RADIUS OF THIS CIRCLE OF GIVEN CIRCUMFERENCE " + circumference + " IS " + circle.Radius(circumference) + "\n");
                 AnyKeyContinue();
                 CircleMenu();
             }
