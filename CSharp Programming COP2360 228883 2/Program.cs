@@ -10,7 +10,7 @@
 ///------------------------------------------------------------------------------
 #pragma warning restore 1587
 using System;
-using static CSharp_Programming_COP2360_228883_2.Classes.Interface;
+using static CSharp_Programming_COP2360_228883_2.Classes.FigureaApp;
 
 namespace CSharp_Programming_COP2360_228883_2
 {

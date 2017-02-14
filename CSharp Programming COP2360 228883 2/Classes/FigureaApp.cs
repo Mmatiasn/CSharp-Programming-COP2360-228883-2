@@ -3,11 +3,11 @@ using static System.Console;
 
 namespace CSharp_Programming_COP2360_228883_2.Classes
 {
-    public static class Interface
+    public static class FigureaApp
     {
         public static void RunInterface(ConsoleColor textColor = ConsoleColor.Green, ConsoleColor backgroundColor = ConsoleColor.Black, uint fontSize = 11)
         {
-            Title = typeof(Interface).Namespace;
+            Title = typeof(FigureaApp).Namespace;
             ForegroundColor = textColor;
             BackgroundColor = backgroundColor;
             ConsoleHelper.SetConsoleFont(fontSize);

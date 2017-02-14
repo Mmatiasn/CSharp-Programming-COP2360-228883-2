@@ -45,7 +45,7 @@
   <ItemGroup>
     <Compile Include="Classes\Circle.cs" />
     <Compile Include="Classes\Cylinder.cs" />
-    <Compile Include="Classes\Interface.cs" />
+    <Compile Include="Classes\FigureaApp.cs" />
     <Compile Include="Classes\Matrix.cs" />
     <Compile Include="ConsoleHelper.cs" />
     <Compile Include="Program.cs" />
